@@ -1,16 +1,16 @@
 // To parse this JSON data, do
 //
-//     final welcome = welcomeFromJson(jsonString);
+//     final covidTodayResult = covidTodayResultFromJson(jsonString);
 
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-Welcome welcomeFromJson(String str) => Welcome.fromJson(json.decode(str));
+CovidTodayResult covidTodayResultFromJson(String str) => CovidTodayResult.fromJson(json.decode(str));
 
-String welcomeToJson(Welcome data) => json.encode(data.toJson());
+String covidTodayResultToJson(CovidTodayResult data) => json.encode(data.toJson());
 
-class Welcome {
-  Welcome({
+class CovidTodayResult {
+  CovidTodayResult({
     required this.confirmed,
     required this.recovered,
     required this.hospitalized,
@@ -34,7 +34,7 @@ class Welcome {
   String updateDate;
   String devBy;
 
-  factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
+  factory CovidTodayResult.fromJson(Map<String, dynamic> json) => CovidTodayResult(
     confirmed: json["Confirmed"] == null ? null : json["Confirmed"],
     recovered: json["Recovered"] == null ? null : json["Recovered"],
     hospitalized: json["Hospitalized"] == null ? null : json["Hospitalized"],
