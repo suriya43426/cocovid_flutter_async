@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart'as http;
-
+import 'package:covid19/covid_today_result.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -26,6 +26,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  CovidTodayResult? _dataFromWebAPI;
   int _counter = 0;
   @override
   void iniState(){
@@ -36,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> getData() async{
     var url = Uri.parse('https://covid19.th-stat.com/json/covid19v2/getTodayCases.json');
     var response = await http.get(url);
-    print(response.body);
+    _dataFromWebAPI =  covidTodayResultFromJson(response.body);
   }
   void _incrementCounter() {
     setState(() {
