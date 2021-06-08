@@ -38,7 +38,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> getData() async{
     var url = Uri.parse('https://covid19.th-stat.com/json/covid19v2/getTodayCases.json');
     var response = await http.get(url);
-    _dataFromWebAPI =  covidTodayResultFromJson(response.body);
+    setState(() {
+      _dataFromWebAPI =  covidTodayResultFromJson(response.body);
+    });
   }
   void _incrementCounter() {
     setState(() {
