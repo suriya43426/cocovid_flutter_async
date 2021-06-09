@@ -27,49 +27,54 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  CovidTodayResult? _dataFromWebAPI;
-  int _counter = 0;
-
-  @override
   void iniState() {
     super.initState();
     print('init');
   }
 
-  Future<void> getData() async {
+  Future<CovidTodayResult> getData() async {
     var url = Uri.parse(
         'https://covid19.th-stat.com/json/covid19v2/getTodayCases.json');
     var response = await http.get(url);
-    setState(() {
-      _dataFromWebAPI = covidTodayResultFromJson(response.body);
-    });
+    var result = covidTodayResultFromJson(response.body);
+    return result;
   }
 
   @override
   Widget build(BuildContext context) {
-    var indicator;
-    if (_dataFromWebAPI == null) {
-      indicator = LinearProgressIndicator();
-    }
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          indicator ?? Container(),
-          Expanded(
-            child: ListView(
+      body: FutureBuilder(
+        future: getData(),
+        builder:
+            (BuildContext context, AsyncSnapshot<CovidTodayResult> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            var result = snapshot.data;
+            return ListView(
               children: [
                 ListTile(
                   title: Text('ผู้ติดเชื้อ'),
-                  subtitle: Text('${_dataFromWebAPI?.confirmed ?? '....'}'),
-                )
+                  subtitle: Text('${result?.confirmed ?? '....'}'),
+                ),
+                ListTile(
+                  title: Text('ผู้ติดเชื้อ'),
+                  subtitle: Text('${result?.confirmed ?? '....'}'),
+                ),
+                ListTile(
+                  title: Text('ผู้ติดเชื้อ'),
+                  subtitle: Text('${result?.confirmed ?? '....'}'),
+                ),
+                ListTile(
+                  title: Text('ผู้ติดเชื้อ'),
+                  subtitle: Text('${result?.confirmed ?? '....'}'),
+                ),
               ],
-            ),
-          )
-        ],
+            );
+          }
+          return LinearProgressIndicator();
+        },
       ),
     );
   }
