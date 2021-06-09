@@ -11,52 +11,52 @@ String covidTodayResultToJson(CovidTodayResult data) => json.encode(data.toJson(
 
 class CovidTodayResult {
   CovidTodayResult({
-    required this.confirmed,
-    required this.recovered,
-    required this.hospitalized,
-    required this.deaths,
-    required this.newConfirmed,
-    required this.newRecovered,
-    required this.newHospitalized,
-    required this.newDeaths,
-    required this.updateDate,
-    required this.devBy,
+    this.confirmed,
+    this.recovered,
+    this.hospitalized,
+    this.deaths,
+    this.newConfirmed,
+    this.newRecovered,
+    this.newHospitalized,
+    this.newDeaths,
+    this.updateDate,
+    this.devBy,
   });
 
-  int confirmed;
-  int recovered;
-  int hospitalized;
-  int deaths;
-  int newConfirmed;
-  int newRecovered;
-  int newHospitalized;
-  int newDeaths;
-  String updateDate;
-  String devBy;
+  int? confirmed;
+  int? recovered;
+  int? hospitalized;
+  int? deaths;
+  int? newConfirmed;
+  int? newRecovered;
+  int? newHospitalized;
+  int? newDeaths;
+  String? updateDate;
+  String? devBy;
 
   factory CovidTodayResult.fromJson(Map<String, dynamic> json) => CovidTodayResult(
-    confirmed: json["Confirmed"] == null ? null : json["Confirmed"],
-    recovered: json["Recovered"] == null ? null : json["Recovered"],
-    hospitalized: json["Hospitalized"] == null ? null : json["Hospitalized"],
-    deaths: json["Deaths"] == null ? null : json["Deaths"],
-    newConfirmed: json["NewConfirmed"] == null ? null : json["NewConfirmed"],
-    newRecovered: json["NewRecovered"] == null ? null : json["NewRecovered"],
-    newHospitalized: json["NewHospitalized"] == null ? null : json["NewHospitalized"],
-    newDeaths: json["NewDeaths"] == null ? null : json["NewDeaths"],
-    updateDate: json["UpdateDate"] == null ? null : json["UpdateDate"],
-    devBy: json["DevBy"] == null ? null : json["DevBy"],
+    confirmed: json["Confirmed"],
+    recovered: json["Recovered"],
+    hospitalized: json["Hospitalized"],
+    deaths: json["Deaths"],
+    newConfirmed: json["NewConfirmed"],
+    newRecovered: json["NewRecovered"],
+    newHospitalized: json["NewHospitalized"],
+    newDeaths: json["NewDeaths"],
+    updateDate: json["UpdateDate"],
+    devBy: json["DevBy"],
   );
 
   Map<String, dynamic> toJson() => {
-    "Confirmed": confirmed == null ? null : confirmed,
-    "Recovered": recovered == null ? null : recovered,
-    "Hospitalized": hospitalized == null ? null : hospitalized,
-    "Deaths": deaths == null ? null : deaths,
-    "NewConfirmed": newConfirmed == null ? null : newConfirmed,
-    "NewRecovered": newRecovered == null ? null : newRecovered,
-    "NewHospitalized": newHospitalized == null ? null : newHospitalized,
-    "NewDeaths": newDeaths == null ? null : newDeaths,
-    "UpdateDate": updateDate == null ? null : updateDate,
-    "DevBy": devBy == null ? null : devBy,
+    "Confirmed": confirmed,
+    "Recovered": recovered,
+    "Hospitalized": hospitalized,
+    "Deaths": deaths,
+    "NewConfirmed": newConfirmed,
+    "NewRecovered": newRecovered,
+    "NewHospitalized": newHospitalized,
+    "NewDeaths": newDeaths,
+    "UpdateDate": updateDate,
+    "DevBy": devBy,
   };
 }

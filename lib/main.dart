@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 import 'package:covid19/covid_today_result.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -26,52 +27,49 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   CovidTodayResult? _dataFromWebAPI;
   int _counter = 0;
+
   @override
-  void iniState(){
+  void iniState() {
     super.initState();
     print('init');
   }
 
-  Future<void> getData() async{
-    var url = Uri.parse('https://covid19.th-stat.com/json/covid19v2/getTodayCases.json');
+  Future<void> getData() async {
+    var url = Uri.parse(
+        'https://covid19.th-stat.com/json/covid19v2/getTodayCases.json');
     var response = await http.get(url);
     setState(() {
-      _dataFromWebAPI =  covidTodayResultFromJson(response.body);
-    });
-  }
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
+      _dataFromWebAPI = covidTodayResultFromJson(response.body);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    var indicator;
+    if (_dataFromWebAPI == null) {
+      indicator = LinearProgressIndicator();
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          indicator ?? Container(),
+          Expanded(
+            child: ListView(
+              children: [
+                ListTile(
+                  title: Text('ผู้ติดเชื้อ'),
+                  subtitle: Text('${_dataFromWebAPI?.confirmed ?? '....'}'),
+                )
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+          )
+        ],
       ),
     );
   }
