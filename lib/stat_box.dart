@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class StatBox extends StatelessWidget {
-
   final String? title;
   final int? total;
   final Color? backgroundColor;
@@ -20,10 +20,12 @@ class StatBox extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text(title!, style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-          ),
+          Text(
+            title!,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
           ),
           Expanded(
             child: Text(
