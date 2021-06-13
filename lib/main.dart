@@ -1,4 +1,5 @@
 import 'package:covid19/src/config/theme.dart';
+import 'package:covid19/src/header.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
             ),
             Column(
               children: [
-                Text('header'),
+                Header(),
                 IconButton(onPressed: (){
                   print('okok');
                 }, icon: FaIcon(FontAwesomeIcons.gamepad)),
